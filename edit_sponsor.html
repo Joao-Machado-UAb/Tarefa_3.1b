@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>ANIMALEC</title>
+  <link rel="icon" href="img/animalec.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animalec.css">
+</head>
+
+<body>
+  <div id="headerContainer"></div>
+
+  <div class="row p-2">
+  <div class="col-12 m-2 text-center">
+    <h2>Patrocinadores</h2>
+    <div class="separador">
+        ------------------------<i class="fas fa-star star-icon"></i>------------------------
+    </div>
+  </div>
+  <div class="container mt-5">
+    <h2>Formulário de Patrocinador</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="patrocinador">Nome Patrocinador</label>
+          <input type="text" class="form-control" id="patrocinador" placeholder="Nome do Patrocinador" required>
+        </div>
+        <div class="form-group col-12">
+          <label for="animal">Animal</label>
+          <input type="text" class="form-control" id="animal" placeholder="Nome do Animal" required>
+        </div>
+        <div class="form-group col-12">
+          <label for="valor">Tempo de Vigência do Patrocínio</label>
+          <input type="number" class="form-control" id="Tempo de Vigência do Patrocínio" placeholder="Tempo de Vigência do Patrocínio" min="1" max="100" required>
+        </div>
+      <div class="form-group col-12">
+        <label for="cidade">Localidade</label>
+        <input type="text" class="form-control" id="localidade" placeholder="Localidade" required>
+      </div>
+    </div>
+      <button id="enviarForm" onclick="enviarDados()" type="submit" class="btn btn-success"><i class="fas fa-edit"></i>Editar Patrocinador</button>
+      <button class="btn btn-danger">
+        <a href="sponsor.html">
+          Cancelar/Voltar
+        </a>
+      </button> 
+    </form>
+  </div>
+  
+</div>
+  <div id="footerContainer"></div>
+  
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+  let params = new URLSearchParams(document.location.search);
+  let patrocinador = params.get("patrocinador");
+  let animal = params.get("animal");
+  let duracao = params.get("duracao");
+  let localidade = params.get("localidade");
+
+  window.onload = () => {
+
+    if(patrocinador != undefined && patrocinador != null) {
+      document.getElementById("patrocinador").value = patrocinador;
+    }
+    if(animal != undefined && animal != null) {
+      document.getElementById("animal").value = animal;
+    }
+    if(duracao != undefined && duracao != null) {
+      document.getElementById("duracao").value = duracao;
+    }
+    if(localidade != undefined && localidade != null) {
+      document.getElementById("localidade").value = localidade;
+    }
+    if(animal != undefined && animal != null ) {
+      document.getElementById("animal").querySelector("option[value='" + animal.toLowerCase() + "']").selected = true;
+    }
+
+    if(animal == undefined || animal == null) {
+      document.getElementById("enviarForm").innerHTML = "Adicionar Sponsor";
+    }
+  };
+
+  function enviarDados() {
+    event.preventDefault();
+    if(animal == undefined || animal == null) {
+      alert(`Patrocinador criado com sucesso!`);
+    } else {
+      alert(`Patrocinador actualizado com sucesso!`);
+    }
+  }
+
+</script>
+
+</html>
